@@ -1,0 +1,1129 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Productos Inteligente</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        .sidebar {
+            transition: all 0.3s ease;
+        }
+        .sidebar.collapsed {
+            width: 70px;
+        }
+        .sidebar.collapsed .nav-text {
+            display: none;
+        }
+        .sidebar.collapsed .logo-text {
+            display: none;
+        }
+        .sidebar.collapsed .nav-item {
+            justify-content: center;
+        }
+        .main-content {
+            transition: margin-left 0.3s ease;
+        }
+        .chart-container {
+            height: 300px;
+        }
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        .input-with-icon {
+            position: relative;
+        }
+        .input-with-icon input {
+            padding-left: 40px;
+        }
+        .input-with-icon i {
+            position: absolute;
+            left: 12px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #9CA3AF;
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <div class="flex h-screen overflow-hidden">
+        <!-- Sidebar -->
+        <div class="sidebar bg-indigo-800 text-white w-64 flex flex-col">
+            <div class="p-4 flex items-center">
+                <div class="bg-white p-2 rounded-lg mr-3">
+                    <i class="fas fa-boxes text-indigo-800 text-xl"></i>
+                </div>
+                <h1 class="logo-text text-xl font-bold">Gestor Inteligente</h1>
+            </div>
+            <div class="flex-1 overflow-y-auto">
+                <nav class="mt-6">
+                    <div class="px-4 mb-8">
+                        <h3 class="text-xs uppercase font-semibold text-indigo-300 mb-4">Gestión Principal</h3>
+                        <ul>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-tachometer-alt mr-3"></i>
+                                    <span class="nav-text">Dashboard</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-box-open mr-3"></i>
+                                    <span class="nav-text">Productos</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-truck mr-3"></i>
+                                    <span class="nav-text">Envíos</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-warehouse mr-3"></i>
+                                    <span class="nav-text">Inventario</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-4 mb-8">
+                        <h3 class="text-xs uppercase font-semibold text-indigo-300 mb-4">Ventas & Promociones</h3>
+                        <ul>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-shopping-cart mr-3"></i>
+                                    <span class="nav-text">Ventas</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-tags mr-3"></i>
+                                    <span class="nav-text">Promociones</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-chart-line mr-3"></i>
+                                    <span class="nav-text">Análisis</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="px-4">
+                        <h3 class="text-xs uppercase font-semibold text-indigo-300 mb-4">Configuración</h3>
+                        <ul>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-cog mr-3"></i>
+                                    <span class="nav-text">Ajustes</span>
+                                </a>
+                            </li>
+                            <li class="mb-2">
+                                <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                                    <i class="fas fa-users mr-3"></i>
+                                    <span class="nav-text">Usuarios</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+            <div class="p-4 border-t border-indigo-700">
+                <div class="flex items-center">
+                    <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="User" class="w-10 h-10 rounded-full mr-3">
+                    <div>
+                        <p class="font-medium">María López</p>
+                        <p class="text-xs text-indigo-300">Administrador</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content flex-1 overflow-y-auto">
+            <!-- Header -->
+            <header class="bg-white shadow-sm p-4 flex justify-between items-center">
+                <div class="flex items-center">
+                    <button id="sidebarToggle" class="mr-4 text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 class="text-xl font-semibold text-gray-800">Gestión de Productos</h1>
+                </div>
+                <div class="flex items-center">
+                    <div class="input-with-icon mr-4">
+                        <i class="fas fa-search"></i>
+                        <input type="text" placeholder="Buscar..." class="border border-gray-300 rounded-lg py-2 px-4 pl-10 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                    </div>
+                    <button class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 flex items-center">
+                        <i class="fas fa-plus mr-2"></i>
+                        <span>Nuevo Producto</span>
+                    </button>
+                </div>
+            </header>
+
+            <!-- Content -->
+            <div class="p-6">
+                <!-- Tabs -->
+                <div class="flex border-b border-gray-200 mb-6">
+                    <button class="tab-btn py-2 px-4 font-medium text-gray-500 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-500" data-tab="products">Productos</button>
+                    <button class="tab-btn py-2 px-4 font-medium text-gray-500 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-500" data-tab="categories">Categorías</button>
+                    <button class="tab-btn py-2 px-4 font-medium text-gray-500 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-500" data-tab="analysis">Análisis</button>
+                    <button class="tab-btn py-2 px-4 font-medium text-gray-500 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-500" data-tab="settings">Configuración</button>
+                </div>
+
+                <!-- Products Tab -->
+                <div id="products" class="tab-content active">
+                    <!-- Filters -->
+                    <div class="bg-white rounded-lg shadow-sm p-4 mb-6">
+                        <div class="grid grid-cols-1 md:grid-cols-4 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Categoría</label>
+                                <select class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option>Todas</option>
+                                    <option>Electrónicos</option>
+                                    <option>Ropa</option>
+                                    <option>Hogar</option>
+                                    <option>Alimentos</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Estado</label>
+                                <select class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option>Todos</option>
+                                    <option>Activos</option>
+                                    <option>Inactivos</option>
+                                    <option>Necesita ajuste</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Stock</label>
+                                <select class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option>Todos</option>
+                                    <option>Disponible</option>
+                                    <option>Bajo stock</option>
+                                    <option>Agotado</option>
+                                </select>
+                            </div>
+                            <div class="flex items-end">
+                                <button class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 w-full">
+                                    Aplicar Filtros
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Products Grid -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                        <!-- Product Card 1 -->
+                        <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden transition duration-300">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1523275335684-37898b6baf30?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product" class="w-full h-48 object-cover">
+                                <div class="absolute top-2 right-2 bg-yellow-500 text-white text-xs font-bold px-2 py-1 rounded-full">Promo</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-semibold text-gray-800">Smartwatch Pro</h3>
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">En stock</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-3">Reloj inteligente con monitor de actividad</p>
+                                <div class="flex justify-between items-center mb-3">
+                                    <div>
+                                        <span class="text-lg font-bold text-gray-900">$199.99</span>
+                                        <span class="text-sm text-gray-500 line-through ml-1">$249.99</span>
+                                    </div>
+                                    <span class="text-xs bg-blue-100 text-blue-800 px-2 py-1 rounded">Electrónicos</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mb-3">
+                                    <div>
+                                        <i class="fas fa-box-open mr-1"></i>
+                                        <span>15 unidades</span>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-percentage mr-1"></i>
+                                        <span>35% margen</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-indigo-600 text-white py-2 px-3 rounded-lg hover:bg-indigo-700 text-sm flex items-center justify-center">
+                                        <i class="fas fa-edit mr-1"></i> Editar
+                                    </button>
+                                    <button class="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 text-sm flex items-center justify-center">
+                                        <i class="fas fa-chart-line mr-1"></i> Analizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 2 -->
+                        <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden transition duration-300">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1546868871-7041f2d55e0f?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product" class="w-full h-48 object-cover">
+                                <div class="absolute top-2 right-2 bg-red-500 text-white text-xs font-bold px-2 py-1 rounded-full">Ajustar</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-semibold text-gray-800">Zapatos Running</h3>
+                                    <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">Bajo stock</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-3">Zapatillas deportivas para running</p>
+                                <div class="flex justify-between items-center mb-3">
+                                    <div>
+                                        <span class="text-lg font-bold text-gray-900">$89.99</span>
+                                    </div>
+                                    <span class="text-xs bg-purple-100 text-purple-800 px-2 py-1 rounded">Ropa</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mb-3">
+                                    <div>
+                                        <i class="fas fa-box-open mr-1"></i>
+                                        <span>3 unidades</span>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-percentage mr-1"></i>
+                                        <span class="text-red-500">-5% margen</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-indigo-600 text-white py-2 px-3 rounded-lg hover:bg-indigo-700 text-sm flex items-center justify-center">
+                                        <i class="fas fa-edit mr-1"></i> Editar
+                                    </button>
+                                    <button class="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 text-sm flex items-center justify-center">
+                                        <i class="fas fa-chart-line mr-1"></i> Analizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 3 -->
+                        <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden transition duration-300">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1585386959984-a4155224a1ad?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product" class="w-full h-48 object-cover">
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-semibold text-gray-800">Perfume Elegance</h3>
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">En stock</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-3">Fragancia exclusiva para hombre</p>
+                                <div class="flex justify-between items-center mb-3">
+                                    <div>
+                                        <span class="text-lg font-bold text-gray-900">$129.99</span>
+                                    </div>
+                                    <span class="text-xs bg-pink-100 text-pink-800 px-2 py-1 rounded">Belleza</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mb-3">
+                                    <div>
+                                        <i class="fas fa-box-open mr-1"></i>
+                                        <span>22 unidades</span>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-percentage mr-1"></i>
+                                        <span>42% margen</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-indigo-600 text-white py-2 px-3 rounded-lg hover:bg-indigo-700 text-sm flex items-center justify-center">
+                                        <i class="fas fa-edit mr-1"></i> Editar
+                                    </button>
+                                    <button class="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 text-sm flex items-center justify-center">
+                                        <i class="fas fa-chart-line mr-1"></i> Analizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Card 4 -->
+                        <div class="product-card bg-white rounded-lg shadow-sm overflow-hidden transition duration-300">
+                            <div class="relative">
+                                <img src="https://images.unsplash.com/photo-1560343090-f0409e92791a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60" alt="Product" class="w-full h-48 object-cover">
+                                <div class="absolute top-2 right-2 bg-gray-500 text-white text-xs font-bold px-2 py-1 rounded-full">Nuevo</div>
+                            </div>
+                            <div class="p-4">
+                                <div class="flex justify-between items-start mb-2">
+                                    <h3 class="font-semibold text-gray-800">Sartén Antiadherente</h3>
+                                    <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">En stock</span>
+                                </div>
+                                <p class="text-gray-600 text-sm mb-3">Sartén de 28cm con revestimiento cerámico</p>
+                                <div class="flex justify-between items-center mb-3">
+                                    <div>
+                                        <span class="text-lg font-bold text-gray-900">$49.99</span>
+                                    </div>
+                                    <span class="text-xs bg-orange-100 text-orange-800 px-2 py-1 rounded">Hogar</span>
+                                </div>
+                                <div class="flex justify-between text-xs text-gray-500 mb-3">
+                                    <div>
+                                        <i class="fas fa-box-open mr-1"></i>
+                                        <span>18 unidades</span>
+                                    </div>
+                                    <div>
+                                        <i class="fas fa-percentage mr-1"></i>
+                                        <span>28% margen</span>
+                                    </div>
+                                </div>
+                                <div class="flex space-x-2">
+                                    <button class="flex-1 bg-indigo-600 text-white py-2 px-3 rounded-lg hover:bg-indigo-700 text-sm flex items-center justify-center">
+                                        <i class="fas fa-edit mr-1"></i> Editar
+                                    </button>
+                                    <button class="flex-1 bg-gray-100 text-gray-700 py-2 px-3 rounded-lg hover:bg-gray-200 text-sm flex items-center justify-center">
+                                        <i class="fas fa-chart-line mr-1"></i> Analizar
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center mt-8">
+                        <nav class="inline-flex rounded-md shadow">
+                            <a href="#" class="px-3 py-2 rounded-l-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                                <i class="fas fa-chevron-left"></i>
+                            </a>
+                            <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-indigo-600 font-medium hover:bg-gray-50">1</a>
+                            <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">2</a>
+                            <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">3</a>
+                            <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">4</a>
+                            <a href="#" class="px-4 py-2 border-t border-b border-gray-300 bg-white text-gray-500 hover:bg-gray-50">5</a>
+                            <a href="#" class="px-3 py-2 rounded-r-md border border-gray-300 bg-white text-gray-500 hover:bg-gray-50">
+                                <i class="fas fa-chevron-right"></i>
+                            </a>
+                        </nav>
+                    </div>
+                </div>
+
+                <!-- Categories Tab -->
+                <div id="categories" class="tab-content">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <div class="flex justify-between items-center mb-6">
+                            <h2 class="text-lg font-semibold text-gray-800">Categorías de Productos</h2>
+                            <button class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 flex items-center">
+                                <i class="fas fa-plus mr-2"></i>
+                                <span>Nueva Categoría</span>
+                            </button>
+                        </div>
+                        
+                        <div class="overflow-x-auto">
+                            <table class="min-w-full divide-y divide-gray-200">
+                                <thead class="bg-gray-50">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nombre</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Descripción</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Productos</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Margen Promedio</th>
+                                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Acciones</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white divide-y divide-gray-200">
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-laptop text-blue-600"></i>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Electrónicos</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-500">Dispositivos electrónicos y accesorios</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">24</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">32%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-tshirt text-purple-600"></i>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Ropa</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-500">Prendas de vestir para hombre y mujer</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">18</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">28%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-home text-orange-600"></i>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Hogar</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-500">Artículos para el hogar y decoración</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">15</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">25%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10 bg-pink-100 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-utensils text-pink-600"></i>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Alimentos</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-500">Productos alimenticios y bebidas</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">32</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">15%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="flex items-center">
+                                                <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
+                                                    <i class="fas fa-spa text-green-600"></i>
+                                                </div>
+                                                <div class="ml-4">
+                                                    <div class="text-sm font-medium text-gray-900">Belleza</div>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-500">Productos de cuidado personal y belleza</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <div class="text-sm text-gray-900">12</div>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap">
+                                            <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">38%</span>
+                                        </td>
+                                        <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                            <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
+                                            <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Analysis Tab -->
+                <div id="analysis" class="tab-content">
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 mb-6">
+                        <!-- Sales Summary -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Resumen de Ventas</h3>
+                            <div class="space-y-4">
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Hoy</span>
+                                        <span class="text-sm font-medium text-gray-900">$1,245.80</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: 45%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Esta semana</span>
+                                        <span class="text-sm font-medium text-gray-900">$8,734.20</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: 75%"></div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="flex justify-between mb-1">
+                                        <span class="text-sm font-medium text-gray-700">Este mes</span>
+                                        <span class="text-sm font-medium text-gray-900">$32,589.45</span>
+                                    </div>
+                                    <div class="w-full bg-gray-200 rounded-full h-2">
+                                        <div class="bg-blue-600 h-2 rounded-full" style="width: 90%"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Margin Analysis -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Análisis de Margen</h3>
+                            <div class="flex items-center justify-center h-40">
+                                <div class="relative w-32 h-32">
+                                    <svg class="w-full h-full" viewBox="0 0 36 36">
+                                        <path d="M18 2.0845
+                                            a 15.9155 15.9155 0 0 1 0 31.831
+                                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none"
+                                            stroke="#E5E7EB"
+                                            stroke-width="3"
+                                            stroke-dasharray="100, 100"
+                                        />
+                                        <path d="M18 2.0845
+                                            a 15.9155 15.9155 0 0 1 0 31.831
+                                            a 15.9155 15.9155 0 0 1 0 -31.831"
+                                            fill="none"
+                                            stroke="#10B981"
+                                            stroke-width="3"
+                                            stroke-dasharray="68, 100"
+                                        />
+                                    </svg>
+                                    <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center">
+                                        <span class="text-2xl font-bold text-gray-800">68%</span>
+                                        <span class="block text-xs text-gray-500">Margen promedio</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="mt-4 text-sm text-gray-600">
+                                <div class="flex items-center mb-1">
+                                    <div class="w-3 h-3 bg-green-500 rounded-full mr-2"></div>
+                                    <span>68% Productos con buen margen</span>
+                                </div>
+                                <div class="flex items-center mb-1">
+                                    <div class="w-3 h-3 bg-yellow-500 rounded-full mr-2"></div>
+                                    <span>22% Productos con margen bajo</span>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="w-3 h-3 bg-red-500 rounded-full mr-2"></div>
+                                    <span>10% Productos con margen negativo</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Top Products -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <h3 class="text-lg font-semibold text-gray-800 mb-4">Productos Destacados</h3>
+                            <div class="space-y-4">
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-star text-blue-600"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">Smartwatch Pro</p>
+                                        <p class="text-sm text-gray-500 truncate">32 ventas esta semana</p>
+                                    </div>
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                        $6,399.68
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-star text-purple-600"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">Zapatos Running</p>
+                                        <p class="text-sm text-gray-500 truncate">28 ventas esta semana</p>
+                                    </div>
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                        $2,519.72
+                                    </div>
+                                </div>
+                                <div class="flex items-center">
+                                    <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center mr-3">
+                                        <i class="fas fa-star text-green-600"></i>
+                                    </div>
+                                    <div class="flex-1 min-w-0">
+                                        <p class="text-sm font-medium text-gray-900 truncate">Perfume Elegance</p>
+                                        <p class="text-sm text-gray-500 truncate">24 ventas esta semana</p>
+                                    </div>
+                                    <div class="inline-flex items-center text-base font-semibold text-gray-900">
+                                        $3,119.76
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Charts -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Sales Trend -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800">Tendencia de Ventas</h3>
+                                <select class="border border-gray-300 rounded-lg py-1 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option>Últimos 7 días</option>
+                                    <option>Últimos 30 días</option>
+                                    <option>Últimos 90 días</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="salesChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Margin by Category -->
+                        <div class="bg-white rounded-lg shadow-sm p-6">
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-lg font-semibold text-gray-800">Margen por Categoría</h3>
+                                <select class="border border-gray-300 rounded-lg py-1 px-3 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                    <option>Este mes</option>
+                                    <option>Mes pasado</option>
+                                    <option>Este trimestre</option>
+                                </select>
+                            </div>
+                            <div class="chart-container">
+                                <canvas id="marginChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Settings Tab -->
+                <div id="settings" class="tab-content">
+                    <div class="bg-white rounded-lg shadow-sm p-6">
+                        <h2 class="text-xl font-semibold text-gray-800 mb-6">Configuración del Sistema</h2>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+                            <!-- General Settings -->
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-800 mb-4">Configuración General</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Moneda</label>
+                                        <select class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                            <option>Dólares (USD)</option>
+                                            <option>Pesos Argentinos (ARS)</option>
+                                            <option>Euros (EUR)</option>
+                                            <option>Reales (BRL)</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Inflación estimada mensual</label>
+                                        <div class="relative">
+                                            <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pr-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="3.5">
+                                            <span class="absolute right-3 top-2.5 text-gray-500">%</span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Margen mínimo aceptable</label>
+                                        <div class="relative">
+                                            <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pr-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="15">
+                                            <span class="absolute right-3 top-2.5 text-gray-500">%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Shipping Settings -->
+                            <div>
+                                <h3 class="text-lg font-medium text-gray-800 mb-4">Configuración de Envíos</h3>
+                                <div class="space-y-4">
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Política de envíos</label>
+                                        <select class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                            <option>Cliente paga envío</option>
+                                            <option>Envió incluido en precio</option>
+                                            <option>Envió gratuito sobre $100</option>
+                                        </select>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Costo base de envío</label>
+                                        <div class="relative">
+                                            <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+                                            <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="5.99">
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <label class="block text-sm font-medium text-gray-700 mb-1">Porcentaje a absorber</label>
+                                        <div class="relative">
+                                            <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pr-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" value="50">
+                                            <span class="absolute right-3 top-2.5 text-gray-500">%</span>
+                                        </div>
+                                        <p class="text-xs text-gray-500 mt-1">Porcentaje del envío que absorbe el negocio</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alerts Settings -->
+                        <div class="mb-8">
+                            <h3 class="text-lg font-medium text-gray-800 mb-4">Alertas y Notificaciones</h3>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="lowStockAlert" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" checked>
+                                    <label for="lowStockAlert" class="ml-2 block text-sm text-gray-700">
+                                        <span class="font-medium">Alerta de stock bajo</span>
+                                        <span class="block text-xs text-gray-500">Notificar cuando el stock sea menor a 5 unidades</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="priceAdjustAlert" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" checked>
+                                    <label for="priceAdjustAlert" class="ml-2 block text-sm text-gray-700">
+                                        <span class="font-medium">Ajuste de precios</span>
+                                        <span class="block text-xs text-gray-500">Notificar cuando el margen caiga bajo el mínimo</span>
+                                    </label>
+                                </div>
+                                <div class="flex items-start">
+                                    <input type="checkbox" id="expirationAlert" class="mt-1 h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded">
+                                    <label for="expirationAlert" class="ml-2 block text-sm text-gray-700">
+                                        <span class="font-medium">Vencimientos</span>
+                                        <span class="block text-xs text-gray-500">Notificar sobre productos próximos a vencer</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Save Button -->
+                        <div class="flex justify-end">
+                            <button class="bg-indigo-600 text-white py-2 px-6 rounded-lg hover:bg-indigo-700">
+                                Guardar Configuración
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Product Modal -->
+    <div id="productModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-lg shadow-xl w-full max-w-4xl max-h-screen overflow-y-auto">
+            <div class="flex justify-between items-center border-b border-gray-200 p-4">
+                <h3 class="text-lg font-semibold text-gray-800">Nuevo Producto</h3>
+                <button id="closeModal" class="text-gray-500 hover:text-gray-700">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-6">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Left Column -->
+                    <div>
+                        <!-- Basic Info -->
+                        <div class="mb-6">
+                            <h4 class="text-md font-medium text-gray-800 mb-3">Información Básica</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Nombre del Producto*</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ej: Smartwatch Pro">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Categoría*</label>
+                                    <select class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                        <option>Seleccionar categoría</option>
+                                        <option>Electrónicos</option>
+                                        <option>Ropa</option>
+                                        <option>Hogar</option>
+                                        <option>Alimentos</option>
+                                        <option>Belleza</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Descripción</label>
+                                    <textarea class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" rows="3" placeholder="Descripción detallada del producto"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Imagen del Producto</label>
+                                    <div class="mt-1 flex items-center">
+                                        <span class="inline-block h-20 w-20 rounded-lg overflow-hidden bg-gray-100">
+                                            <svg class="h-full w-full text-gray-300" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                                            </svg>
+                                        </span>
+                                        <button type="button" class="ml-5 bg-white py-2 px-3 border border-gray-300 rounded-lg shadow-sm text-sm leading-4 font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                                            Cambiar
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pricing -->
+                        <div>
+                            <h4 class="text-md font-medium text-gray-800 mb-3">Precio y Costos</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Precio de Venta*</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+                                        <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Costo Unitario*</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+                                        <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Margen de Ganancia Deseado</label>
+                                    <div class="relative">
+                                        <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pr-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="0">
+                                        <span class="absolute right-3 top-2.5 text-gray-500">%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Right Column -->
+                    <div>
+                        <!-- Inventory -->
+                        <div class="mb-6">
+                            <h4 class="text-md font-medium text-gray-800 mb-3">Inventario</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">SKU</label>
+                                    <input type="text" class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="Ej: SWP-2023">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Stock Inicial</label>
+                                    <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="0">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Alerta de Stock Bajo</label>
+                                    <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="5" value="5">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Additional Costs -->
+                        <div class="mb-6">
+                            <h4 class="text-md font-medium text-gray-800 mb-3">Costos Adicionales</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gastos de Logística</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+                                        <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="0.00">
+                                    </div>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Gastos de Conservación</label>
+                                    <div class="relative">
+                                        <span class="absolute left-3 top-2.5 text-gray-500">$</span>
+                                        <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 pl-8 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="0.00">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Product Lifecycle -->
+                        <div>
+                            <h4 class="text-md font-medium text-gray-800 mb-3">Ciclo de Vida</h4>
+                            <div class="space-y-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Fecha de Adquisición</label>
+                                    <input type="date" class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700 mb-1">Vida Útil Estimada (meses)</label>
+                                    <input type="number" class="w-full border border-gray-300 rounded-lg py-2 px-3 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500" placeholder="12">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calculated Values -->
+                <div class="mt-6 bg-gray-50 p-4 rounded-lg">
+                    <h4 class="text-md font-medium text-gray-800 mb-3">Cálculos Automáticos</h4>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                        <div class="bg-white p-3 rounded-lg shadow-xs">
+                            <p class="text-sm text-gray-500">Precio Mínimo Recomendado</p>
+                            <p class="text-lg font-semibold text-gray-800">$179.99</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg shadow-xs">
+                            <p class="text-sm text-gray-500">Precio Promocional Mínimo</p>
+                            <p class="text-lg font-semibold text-gray-800">$159.99</p>
+                        </div>
+                        <div class="bg-white p-3 rounded-lg shadow-xs">
+                            <p class="text-sm text-gray-500">Margen Real Esperado</p>
+                            <p class="text-lg font-semibold text-green-600">32%</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Form Actions -->
+                <div class="mt-6 flex justify-end space-x-3">
+                    <button type="button" class="bg-white py-2 px-4 border border-gray-300 rounded-lg shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Cancelar
+                    </button>
+                    <button type="submit" class="bg-indigo-600 text-white py-2 px-4 rounded-lg shadow-sm text-sm font-medium hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+                        Guardar Producto
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Toggle sidebar
+        document.getElementById('sidebarToggle').addEventListener('click', function() {
+            document.querySelector('.sidebar').classList.toggle('collapsed');
+            document.querySelector('.main-content').classList.toggle('ml-16');
+            document.querySelector('.main-content').classList.toggle('ml-64');
+        });
+
+        // Tab functionality
+        const tabButtons = document.querySelectorAll('.tab-btn');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                
+                // Remove active class from all buttons and contents
+                tabButtons.forEach(btn => btn.classList.remove('border-indigo-500', 'text-indigo-600'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Add active class to clicked button and corresponding content
+                button.classList.add('border-indigo-500', 'text-indigo-600');
+                document.getElementById(tabId).classList.add('active');
+            });
+        });
+
+        // Product modal
+        const productModal = document.getElementById('productModal');
+        const closeModal = document.getElementById('closeModal');
+
+        document.querySelector('header button.bg-indigo-600').addEventListener('click', () => {
+            productModal.classList.remove('hidden');
+        });
+
+        closeModal.addEventListener('click', () => {
+            productModal.classList.add('hidden');
+        });
+
+        // Charts
+        // Sales Chart
+        const salesCtx = document.getElementById('salesChart').getContext('2d');
+        const salesChart = new Chart(salesCtx, {
+            type: 'line',
+            data: {
+                labels: ['Lun', 'Mar', 'Mié', 'Jue', 'Vie', 'Sáb', 'Dom'],
+                datasets: [{
+                    label: 'Ventas',
+                    data: [1200, 1900, 1500, 2100, 2500, 1800, 2300],
+                    backgroundColor: 'rgba(79, 70, 229, 0.05)',
+                    borderColor: 'rgba(79, 70, 229, 1)',
+                    borderWidth: 2,
+                    tension: 0.1,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            drawBorder: false
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+
+        // Margin Chart
+        const marginCtx = document.getElementById('marginChart').getContext('2d');
+        const marginChart = new Chart(marginCtx, {
+            type: 'bar',
+            data: {
+                labels: ['Electrónicos', 'Ropa', 'Hogar', 'Alimentos', 'Belleza'],
+                datasets: [{
+                    label: 'Margen Promedio',
+                    data: [32, 28, 25, 15, 38],
+                    backgroundColor: [
+                        'rgba(79, 70, 229, 0.7)',
+                        'rgba(124, 58, 237, 0.7)',
+                        'rgba(217, 119, 6, 0.7)',
+                        'rgba(16, 185, 129, 0.7)',
+                        'rgba(236, 72, 153, 0.7)'
+                    ],
+                    borderColor: [
+                        'rgba(79, 70, 229, 1)',
+                        'rgba(124, 58, 237, 1)',
+                        'rgba(217, 119, 6, 1)',
+                        'rgba(16, 185, 129, 1)',
+                        'rgba(236, 72, 153, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            drawBorder: false
+                        },
+                        ticks: {
+                            callback: function(value) {
+                                return value + '%';
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
