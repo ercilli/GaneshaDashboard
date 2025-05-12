@@ -19,16 +19,17 @@ async function loadComponent(selector, url) {
     }
 }
 
+// ...existing code...
 document.addEventListener('DOMContentLoaded', async () => {
-    await loadComponent('#sidebar-container', '../src/components/Sidebar.html');
-    await loadComponent('#header-container', '../src/components/Header.html');
-    await loadComponent('#tabs-container', '../src/components/Tabs.html');
-    await loadComponent('#products', '../src/components/ProductsTab.html');
-    await loadComponent('#categories', '../src/components/CategoriesTab.html');
-    await loadComponent('#analysis', '../src/components/AnalysisTab.html');
-    await loadComponent('#settings', '../src/components/SettingsTab.html');
-    await loadComponent('#product-modal-container', '../src/components/ProductModal.html');
-    await loadComponent('#stock', '../src/components/StockTab.html');
+    await loadComponent('#sidebar-container', 'src/components/Sidebar.html');
+    await loadComponent('#header-container', 'src/components/Header.html');
+    await loadComponent('#tabs-container', 'src/components/Tabs.html');
+    await loadComponent('#products', 'src/components/ProductsTab.html');
+    await loadComponent('#categories', 'src/components/CategoriesTab.html');
+    await loadComponent('#analysis', 'src/components/AnalysisTab.html');
+    await loadComponent('#settings', 'src/components/SettingsTab.html');
+    await loadComponent('#product-modal-container', 'src/components/ProductModal.html');
+    await loadComponent('#stock', 'src/components/StockTab.html');
     setupSidebarToggle();
     setupProductModal();
     setupTabs();
