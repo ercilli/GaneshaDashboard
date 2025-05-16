@@ -1,18 +1,40 @@
-export function setupTabs() {
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
+// CSS classes
+const ACTIVE_CONTENT_CLASS = 'active';
+const ACTIVE_BUTTON_CLASSES = ['border-indigo-500', 'text-indigo-600'];
 
-    tabButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            const tabId = button.getAttribute('data-tab');
-            
-            // Remove active class from all buttons and contents
-            tabButtons.forEach(btn => btn.classList.remove('border-indigo-500', 'text-indigo-600'));
-            tabContents.forEach(content => content.classList.remove('active'));
-            
-            // Add active class to clicked button and corresponding content
-            button.classList.add('border-indigo-500', 'text-indigo-600');
-            document.getElementById(tabId).classList.add('active');
+export class TabManager {
+    constructor({
+        tabButtons,
+        tabContents,
+        activeButtonClasses = ACTIVE_BUTTON_CLASSES,
+        activeContentClass = ACTIVE_CONTENT_CLASS
+    }) {
+        // Ahora recibimos directamente los elementos
+        this.tabButtons = tabButtons;
+        this.tabContents = tabContents;
+        this.activeButtonClasses = activeButtonClasses;
+        this.activeContentClass = activeContentClass;
+    }
+
+    init() {
+        this.tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                const tabId = button.getAttribute('data-tab');
+                this.activate(tabId);
+            });
         });
-    });
+    }
+
+    activate(tabId) {
+        // Remover clases activas
+        this.tabButtons.forEach(btn => btn.classList.remove(...this.activeButtonClasses));
+        this.tabContents.forEach(content => content.classList.remove(this.activeContentClass));
+
+        // Añadir clases activas al botón clickeado y su contenido
+        const button = Array.from(this.tabButtons).find(btn => btn.getAttribute('data-tab') === tabId);
+        if (button) button.classList.add(...this.activeButtonClasses);
+
+        const content = Array.from(this.tabContents).find(c => c.id === tabId);
+        if (content) content.classList.add(this.activeContentClass);
+    }
 }
