@@ -1,7 +1,7 @@
 import { renderSalesChart, renderMarginChart } from './charts.js';
 import { setupProductModal } from './modal.js';
 import { setupSidebarToggle } from './sidebar.js';
-import { TabManager } from './tabs.js';
+import { setupTabs } from './tabs.js';
 import { setupSidebarNavigation } from './navigation.js';
 import { setupSales } from './sales.js';
 
@@ -34,11 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadComponent('#sales', 'src/components/Sales.html');
     setupSidebarToggle();
     setupProductModal();
-    // Initialize tab manager
-    const tabButtons = document.querySelectorAll('.tab-btn');
-    const tabContents = document.querySelectorAll('.tab-content');
-    const tabs = new TabManager({ tabButtons, tabContents });
-    tabs.init();
+    setupTabs();
     setupSales();
     setupSidebarNavigation();
     renderSalesChart();
