@@ -3,7 +3,6 @@ import { setupProductModal } from './modal.js';
 import { setupSidebarToggle } from './sidebar.js';
 import { setupTabs } from './tabs.js';
 import { setupSidebarNavigation } from './navigation.js';
-import { setupSales } from './sales.js';
 
 async function loadComponent(selector, url) {
     console.log(`Intentando cargar componente desde: ${url}`);
@@ -31,11 +30,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     await loadComponent('#analysis', 'src/components/AnalysisTab.html');
     await loadComponent('#settings', 'src/components/SettingsTab.html');
     await loadComponent('#product-modal-container', 'src/components/ProductModal.html');
-    await loadComponent('#sales', 'src/components/Sales.html');
     setupSidebarToggle();
     setupProductModal();
     setupTabs();
-    setupSales();
     setupSidebarNavigation();
     renderSalesChart();
     renderMarginChart();
