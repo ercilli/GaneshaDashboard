@@ -7,52 +7,58 @@
     </div>
     <div class="flex-1 overflow-y-auto">
         <nav class="mt-6">
-            <div class="px-4 mb-8">
-                <h3 class="text-xs uppercase font-semibold text-indigo-300 mb-4">Gestión Principal</h3>
+            <div class="px-4 mb-2">
+                <h2 class="text-xs uppercase tracking-wider text-indigo-200 font-semibold mb-2">Gestión</h2>
                 <ul>
                     <li class="mb-2">
-                        <a href="#" data-tab="products" class="nav-item flex items-center py-2 px-4 bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="dashboard" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-tachometer-alt mr-3"></i>
                             <span class="nav-text">Dashboard</span>
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" data-tab="products" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="products" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-box-open mr-3"></i>
                             <span class="nav-text">Productos</span>
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="sales" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                            <i class="fas fa-receipt mr-3"></i>
+                            <span class="nav-text">Ventas</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" data-section="promotions" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                            <i class="fas fa-gift mr-3"></i>
+                            <span class="nav-text">Promociones</span>
+                        </a>
+                    </li>
+                    <li class="mb-2">
+                        <a href="#" data-section="categories" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                            <i class="fas fa-tags mr-3"></i>
+                            <span class="nav-text">Categorías</span>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="px-4 mb-2">
+                <h2 class="text-xs uppercase tracking-wider text-indigo-200 font-semibold mb-2">Operaciones</h2>
+                <ul>
+                    <li class="mb-2">
+                        <a href="#" data-section="shipping" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-truck mr-3"></i>
                             <span class="nav-text">Envíos</span>
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="stock" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-warehouse mr-3"></i>
-                            <span class="nav-text">Inventario</span>
-                        </a>
-                    </li>
-                </ul>
-            </div>
-            <div class="px-4 mb-8">
-                <h3 class="text-xs uppercase font-semibold text-indigo-300 mb-4">Ventas & Promociones</h3>
-                <ul>
-                    <li class="mb-2">
-                        <a href="#" data-tab="sales" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
-                            <i class="fas fa-shopping-cart mr-3"></i>
-                            <span class="nav-text">Ventas</span>
+                            <span class="nav-text">Stock</span>
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
-                            <i class="fas fa-tags mr-3"></i>
-                            <span class="nav-text">Promociones</span>
-                        </a>
-                    </li>
-                    <li class="mb-2">
-                        <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="analysis" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-chart-line mr-3"></i>
                             <span class="nav-text">Análisis</span>
                         </a>
@@ -60,16 +66,16 @@
                 </ul>
             </div>
             <div class="px-4">
-                <h3 class="text-xs uppercase font-semibold text-indigo-300 mb-4">Configuración</h3>
+                <h2 class="text-xs uppercase tracking-wider text-indigo-200 font-semibold mb-2">Configuración</h2>
                 <ul>
                     <li class="mb-2">
-                        <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="settings" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-cog mr-3"></i>
                             <span class="nav-text">Ajustes</span>
                         </a>
                     </li>
                     <li class="mb-2">
-                        <a href="#" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
+                        <a href="#" data-section="users" class="nav-item flex items-center py-2 px-4 hover:bg-indigo-700 rounded-lg">
                             <i class="fas fa-users mr-3"></i>
                             <span class="nav-text">Usuarios</span>
                         </a>
