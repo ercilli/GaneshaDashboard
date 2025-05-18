@@ -38,6 +38,14 @@ export const TABS_CONFIG = {
         { id: 'min-margin', label: '📉 Margen mínimo' },
         { id: 'shipping-cost-policy', label: '🚚 Costo de envío, políticas' },
         { id: 'alerts', label: '🔔 Activación de alertas' }
+    ],
+    users: [
+        { id: 'list', label: '👤 Listado de usuarios' }
+        // Puedes agregar más tabs de usuario si lo necesitas
+    ],
+    dashboard: [
+        { id: 'resume', label: '📉 Resumen' }
+        // Puedes agregar más tabs de usuario si lo necesitas
     ]
 };
 
