@@ -1,4 +1,4 @@
-import { renderSalesChart, renderMarginChart } from './charts.js';
+import { renderSalesChart, renderMarginChart, renderVentasMesChart, renderStockCategoriaChart } from './charts.js';
 
 export function setupTabs(section) {
     const tabButtons = document.querySelectorAll('.tab-btn');
@@ -35,6 +35,12 @@ async function loadTabContent(section, tabId) {
         if (section === 'analysis' && tabId === 'sales-by-month') {
             renderSalesChart();
             renderMarginChart();
+        }
+        // Dashboard resumen
+        if (section === 'dashboard' && tabId === 'resume') {
+            renderVentasMesChart();
+            renderStockCategoriaChart();
+            // Aquí puedes llamar a más funciones de gráficos/KPIs si agregas más
         }
     } catch (error) {
         contentContainer.innerHTML = `<div class="text-red-500">Error al cargar el contenido.</div>`;
