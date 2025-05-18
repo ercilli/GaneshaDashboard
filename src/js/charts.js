@@ -80,3 +80,44 @@ export function renderMarginChart() {
         }
     });
 }
+
+export function renderVentasMesChart() {
+    const ctx = document.getElementById('ventasMesChart');
+    if (!ctx) return;
+    new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['Ene', 'Feb', 'Mar', 'Abr', 'May'],
+            datasets: [{
+                label: 'Ventas ($)',
+                data: [35000, 42000, 51000, 69000, 85000],
+                borderColor: '#6366f1',
+                backgroundColor: 'rgba(99,102,241,0.1)',
+                tension: 0.4,
+                fill: true
+            }]
+        },
+        options: {
+            plugins: { legend: { display: false } },
+            scales: { y: { beginAtZero: true } }
+        }
+    });
+}
+
+export function renderStockCategoriaChart() {
+    const ctx = document.getElementById('stockCategoriaChart');
+    if (!ctx) return;
+    new Chart(ctx, {
+        type: 'doughnut',
+        data: {
+            labels: ['Macetas', 'Fertilizantes', 'Sustratos', 'Plantas'],
+            datasets: [{
+                data: [350, 200, 400, 300],
+                backgroundColor: ['#6366f1', '#22c55e', '#facc15', '#f87171']
+            }]
+        },
+        options: {
+            plugins: { legend: { position: 'bottom' } }
+        }
+    });
+}
