@@ -1,0 +1,75 @@
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-xl mx-auto">
+    <h2 class="text-lg font-semibold text-gray-800 mb-4">Simulación Inteligente de Ventas</h2>
+    <form id="intelligentSimForm" class="space-y-4 mb-6">
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Producto</label>
+            <input list="productos" name="producto" id="productoInput" class="w-full border border-gray-300 rounded-lg px-3 py-2" placeholder="Buscar producto..." required>
+            <datalist id="productos">
+                <option value="Maceta Plástica 10cm">
+                <option value="Fertilizante Líquido 1L">
+                <option value="Sustrato Universal 5kg">
+                <option value="Planta Suculenta">
+                <option value="Maceta Cerámica 15cm">
+            </datalist>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Precio actual de venta</label>
+            <input type="number" step="0.01" min="0" name="precioActual" class="w-full border border-gray-300 rounded-lg px-3 py-2" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Costo unitario</label>
+            <input type="number" step="0.01" min="0" name="costo" class="w-full border border-gray-300 rounded-lg px-3 py-2" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">Margen objetivo (%)</label>
+            <input type="number" step="0.01" min="0" max="100" name="margenObjetivo" class="w-full border border-gray-300 rounded-lg px-3 py-2" value="30" required>
+        </div>
+        <div>
+            <label class="block text-sm font-medium text-gray-700 mb-1">¿Qué deseas simular?</label>
+            <select name="tipoSimulacion" class="w-full border border-gray-300 rounded-lg px-3 py-2" required>
+                <option value="precio">¿Qué precio necesito para lograr el margen objetivo?</option>
+                <option value="margen">¿Qué margen obtengo con el precio actual?</option>
+                <option value="descuento">¿Qué descuento máximo puedo aplicar sin perder margen?</option>
+            </select>
+        </div>
+        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 font-semibold">Simular</button>
+    </form>
+
+    <div id="intelligentSimResult" class="mt-6 hidden">
+        <h3 class="text-md font-semibold text-gray-800 mb-2">Resultado de la simulación</h3>
+        <div class="bg-gray-50 rounded-lg p-4" id="simResultContent"></div>
+    </div>
+</div>
+
+<script>
+document.getElementById('intelligentSimForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const data = Object.fromEntries(new FormData(this));
+    const precioActual = parseFloat(data.precioActual) || 0;
+    const costo = parseFloat(data.costo) || 0;
+    const margenObjetivo = parseFloat(data.margenObjetivo) || 0;
+    const tipoSimulacion = data.tipoSimulacion;
+
+    let resultado = '';
+    if (tipoSimulacion === 'precio') {
+        // Precio necesario para lograr el margen objetivo
+        const precioNecesario = costo / (1 - margenObjetivo / 100);
+        resultado = `<div><span class="font-medium">Precio necesario para margen ${margenObjetivo}%:</span> <span class="font-mono text-indigo-700">$${precioNecesario.toFixed(2)}</span></div>`;
+    } else if (tipoSimulacion === 'margen') {
+        // Margen real con el precio actual
+        const margenReal = ((precioActual - costo) / precioActual) * 100;
+        resultado = `<div><span class="font-medium">Margen real con precio $${precioActual.toFixed(2)}:</span> <span class="font-mono text-indigo-700">${margenReal.toFixed(2)}%</span></div>`;
+    } else if (tipoSimulacion === 'descuento') {
+        // Descuento máximo para no perder margen objetivo
+        const precioObjetivo = costo / (1 - margenObjetivo / 100);
+        let descuentoMax = 0;
+        if (precioActual > precioObjetivo) {
+            descuentoMax = (1 - precioObjetivo / precioActual) * 100;
+        }
+        resultado = `<div><span class="font-medium">Descuento máximo sin perder margen ${margenObjetivo}%:</span> <span class="font-mono text-indigo-700">${descuentoMax.toFixed(2)}%</span></div>`;
+    }
+
+    document.getElementById('simResultContent').innerHTML = resultado;
+    document.getElementById('intelligentSimResult').classList.remove('hidden');
+});
+</script>
