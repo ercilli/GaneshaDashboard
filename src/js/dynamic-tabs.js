@@ -56,7 +56,7 @@ export function renderDynamicTabs(section) {
 
     container.innerHTML = tabs.map((tab, idx) => `
         <button
-            class="tab-btn py-2 px-4 font-medium text-gray-500 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-500${idx === 0 ? ' border-indigo-500 text-indigo-600' : ''}"
+            class="tab-btn py-2 px-3 md:px-4 font-medium text-xs md:text-base text-gray-500 hover:text-indigo-600 border-b-2 border-transparent hover:border-indigo-500${idx === 0 ? ' border-indigo-500 text-indigo-600' : ''}"
             data-tab="${tab.id}">${tab.label}</button>
     `).join('');
 }
