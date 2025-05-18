@@ -39,7 +39,6 @@ async function showSection(section) {
     // Inicializa la lógica de tabs
     setupTabs(section);
     // Carga el contenido principal de la sección debajo de los tabs
-    await loadComponent('#section-content', `src/components/${capitalize(section)}Tab.html`);
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -68,8 +67,4 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
         }
     });
-
-    // Si necesitas gráficos globales, puedes llamarlos aquí
-    renderSalesChart();
-    renderMarginChart();
 });
