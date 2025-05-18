@@ -1,3 +1,5 @@
+import { renderSalesChart, renderMarginChart } from './charts.js';
+
 export function setupTabs(section) {
     const tabButtons = document.querySelectorAll('.tab-btn');
     if (tabButtons.length === 0) return;
@@ -19,7 +21,6 @@ export function setupTabs(section) {
 async function loadTabContent(section, tabId) {
     const contentContainer = document.getElementById('section-content');
     if (!contentContainer) return;
-    // Ajusta la ruta según tu estructura de carpetas
     const url = `src/components/${section}/${tabId}.html`;
     try {
         const response = await fetch(url);
@@ -29,6 +30,12 @@ async function loadTabContent(section, tabId) {
         }
         const html = await response.text();
         contentContainer.innerHTML = html;
+
+        // Llama a los gráficos solo si el tab lo requiere
+        if (section === 'analysis' && tabId === 'sales-by-month') {
+            renderSalesChart();
+            renderMarginChart();
+        }
     } catch (error) {
         contentContainer.innerHTML = `<div class="text-red-500">Error al cargar el contenido.</div>`;
     }
