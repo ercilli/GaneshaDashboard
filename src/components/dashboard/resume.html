@@ -1,0 +1,56 @@
+<div class="bg-white rounded-lg shadow-sm p-6 max-w-6xl mx-auto">
+    <h2 class="text-lg font-semibold text-gray-800 mb-6">Resumen General del Emprendimiento</h2>
+    <!-- KPIs principales -->
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+        <div class="bg-indigo-50 rounded-lg p-4 text-center">
+            <div class="text-2xl font-bold text-indigo-700" id="kpi-ventas-mes">+$85,000</div>
+            <div class="text-sm text-gray-700">Ventas del mes</div>
+        </div>
+        <div class="bg-green-50 rounded-lg p-4 text-center">
+            <div class="text-2xl font-bold text-green-700" id="kpi-crecimiento-mensual">+12%</div>
+            <div class="text-sm text-gray-700">Crecimiento mensual</div>
+        </div>
+        <div class="bg-yellow-50 rounded-lg p-4 text-center">
+            <div class="text-2xl font-bold text-yellow-700" id="kpi-bajo-stock">8</div>
+            <div class="text-sm text-gray-700">Productos con bajo stock</div>
+        </div>
+        <div class="bg-red-50 rounded-lg p-4 text-center">
+            <div class="text-2xl font-bold text-red-700" id="kpi-margen-negativo">3</div>
+            <div class="text-sm text-gray-700">Productos con margen negativo</div>
+        </div>
+    </div>
+
+    <!-- Gráficos de resumen -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+        <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-md font-semibold text-gray-800 mb-2">Ventas por mes</h3>
+            <canvas id="ventasMesChart" height="180"></canvas>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-md font-semibold text-gray-800 mb-2">Distribución de stock por categoría</h3>
+            <canvas id="stockCategoriaChart" height="180"></canvas>
+        </div>
+    </div>
+
+    <!-- Tablero logístico y operativo -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-md font-semibold text-gray-800 mb-2">Logística</h3>
+            <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                <li>Envíos realizados este mes: <span class="font-semibold" id="kpi-envios-mes">27</span></li>
+                <li>Costo total de envíos: <span class="font-semibold" id="kpi-costo-envios">$12,500</span></li>
+                <li>Envíos absorbidos por la empresa: <span class="font-semibold" id="kpi-envios-absorbidos">18</span></li>
+                <li>Envíos parcialmente absorbidos: <span class="font-semibold" id="kpi-envios-parciales">7</span></li>
+            </ul>
+        </div>
+        <div class="bg-white rounded-lg shadow p-4">
+            <h3 class="text-md font-semibold text-gray-800 mb-2">Operativa</h3>
+            <ul class="list-disc pl-6 text-gray-700 space-y-1">
+                <li>Stock total: <span class="font-semibold" id="kpi-stock-total">1,250</span> unidades</li>
+                <li>Productos con vencimiento próximo: <span class="font-semibold" id="kpi-vencimiento-proximo">2</span></li>
+                <li>Alertas de bajo stock activas: <span class="font-semibold" id="kpi-alertas-stock">8</span></li>
+                <li>Promociones activas: <span class="font-semibold" id="kpi-promos-activas">5</span></li>
+            </ul>
+        </div>
+    </div>
+</div>
