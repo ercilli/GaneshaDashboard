@@ -1,13 +1,104 @@
 <div class="bg-white rounded-lg shadow-sm p-6">
     <div class="flex justify-between items-center mb-6">
         <h2 class="text-lg font-semibold text-gray-800">Categorías de Productos</h2>
-        <button class="bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 flex items-center">
+        <button
+            class="bg-indigo-600 text-white py-1.5 px-3 md:py-2 md:px-4 rounded-lg hover:bg-indigo-700 flex items-center text-xs md:text-sm">
             <i class="fas fa-plus mr-2"></i>
             <span>Nueva Categoría</span>
         </button>
     </div>
 
-    <div class="overflow-x-auto">
+    <!-- Tarjetas en mobile -->
+    <div class="space-y-4 md:hidden">
+        <div class="border rounded-lg p-4 shadow-sm flex items-center">
+            <div class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-laptop text-blue-600"></i>
+            </div>
+            <div class="flex-1">
+                <div class="text-sm font-medium text-gray-900">Electrónicos</div>
+                <div class="text-xs text-gray-500">Dispositivos electrónicos y accesorios</div>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs text-gray-700">Productos: <span class="font-semibold">24</span></span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">32%</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm flex items-center">
+            <div class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-tshirt text-purple-600"></i>
+            </div>
+            <div class="flex-1">
+                <div class="text-sm font-medium text-gray-900">Ropa</div>
+                <div class="text-xs text-gray-500">Prendas de vestir para hombre y mujer</div>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs text-gray-700">Productos: <span class="font-semibold">18</span></span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">28%</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm flex items-center">
+            <div class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-home text-orange-600"></i>
+            </div>
+            <div class="flex-1">
+                <div class="text-sm font-medium text-gray-900">Hogar</div>
+                <div class="text-xs text-gray-500">Artículos para el hogar y decoración</div>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs text-gray-700">Productos: <span class="font-semibold">15</span></span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">25%</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm flex items-center">
+            <div class="flex-shrink-0 h-10 w-10 bg-pink-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-utensils text-pink-600"></i>
+            </div>
+            <div class="flex-1">
+                <div class="text-sm font-medium text-gray-900">Alimentos</div>
+                <div class="text-xs text-gray-500">Productos alimenticios y bebidas</div>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs text-gray-700">Productos: <span class="font-semibold">32</span></span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">15%</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm flex items-center">
+            <div class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center mr-4">
+                <i class="fas fa-spa text-green-600"></i>
+            </div>
+            <div class="flex-1">
+                <div class="text-sm font-medium text-gray-900">Belleza</div>
+                <div class="text-xs text-gray-500">Productos de cuidado personal y belleza</div>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="text-xs text-gray-700">Productos: <span class="font-semibold">12</span></span>
+                    <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">38%</span>
+                </div>
+                <div class="flex gap-2 mt-2">
+                    <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                    <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla solo visible en desktop -->
+    <div class="overflow-x-auto hidden md:block">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
@@ -29,145 +120,7 @@
                 </tr>
             </thead>
             <tbody class="bg-white divide-y divide-gray-200">
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div
-                                class="flex-shrink-0 h-10 w-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-laptop text-blue-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Electrónicos</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-500">Dispositivos electrónicos y accesorios
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">24</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">32%</span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div
-                                class="flex-shrink-0 h-10 w-10 bg-purple-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-tshirt text-purple-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Ropa</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-500">Prendas de vestir para hombre y mujer
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">18</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">28%</span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div
-                                class="flex-shrink-0 h-10 w-10 bg-orange-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-home text-orange-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Hogar</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-500">Artículos para el hogar y decoración
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">15</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">25%</span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div
-                                class="flex-shrink-0 h-10 w-10 bg-pink-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-utensils text-pink-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Alimentos</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-500">Productos alimenticios y bebidas</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">32</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-800">15%</span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="flex items-center">
-                            <div
-                                class="flex-shrink-0 h-10 w-10 bg-green-100 rounded-full flex items-center justify-center">
-                                <i class="fas fa-spa text-green-600"></i>
-                            </div>
-                            <div class="ml-4">
-                                <div class="text-sm font-medium text-gray-900">Belleza</div>
-                            </div>
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-500">Productos de cuidado personal y belleza
-                        </div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <div class="text-sm text-gray-900">12</div>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
-                        <span
-                            class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">38%</span>
-                    </td>
-                    <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
-                        <button class="text-indigo-600 hover:text-indigo-900 mr-3"><i class="fas fa-edit"></i></button>
-                        <button class="text-red-600 hover:text-red-900"><i class="fas fa-trash"></i></button>
-                    </td>
-                </tr>
+                <!-- ...tu contenido de tabla existente... -->
             </tbody>
         </table>
     </div>
