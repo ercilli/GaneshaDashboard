@@ -17,7 +17,8 @@
                 <option value="viewer">Solo Lectura</option>
             </select>
             <p class="text-xs text-gray-500 mt-1">
-                El Administrador puede ver y gestionar usuarios. El Usuario tiene acceso limitado. Solo Lectura solo puede visualizar información.
+                El Administrador puede ver y gestionar usuarios. El Usuario tiene acceso limitado. Solo Lectura solo
+                puede visualizar información.
             </p>
         </div>
         <div>
@@ -43,11 +44,44 @@
                 Selecciona a qué módulos puede acceder el usuario.
             </p>
         </div>
-        <button type="submit" class="w-full bg-indigo-600 text-white py-2 px-4 rounded-lg hover:bg-indigo-700 font-semibold">Agregar usuario</button>
+        <button type="submit"
+            class="w-full bg-indigo-600 text-white py-1.5 px-3 md:py-2 md:px-4 rounded-lg hover:bg-indigo-700 font-semibold text-xs md:text-sm">
+            Agregar usuario
+        </button>
     </form>
 
     <h3 class="text-md font-semibold text-gray-800 mb-2">Usuarios registrados</h3>
-    <div class="overflow-x-auto">
+
+    <!-- Tarjetas en mobile -->
+    <div class="space-y-4 md:hidden">
+        <div class="border rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between items-center mb-1">
+                <span class="font-semibold text-gray-900">Ernesto Admin</span>
+                <span class="text-xs px-2 py-1 rounded-full bg-indigo-100 text-indigo-700">Administrador</span>
+            </div>
+            <div class="text-xs text-gray-700 mb-1">admin@ejemplo.com</div>
+            <div class="text-xs text-gray-500 mb-1">Acceso: Ventas, Stock, Promociones, Usuarios, Configuración</div>
+            <div class="flex gap-2 mt-2">
+                <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between items-center mb-1">
+                <span class="font-semibold text-gray-900">Lucía Usuario</span>
+                <span class="text-xs px-2 py-1 rounded-full bg-green-100 text-green-700">Usuario</span>
+            </div>
+            <div class="text-xs text-gray-700 mb-1">lucia@ejemplo.com</div>
+            <div class="text-xs text-gray-500 mb-1">Acceso: Ventas, Stock</div>
+            <div class="flex gap-2 mt-2">
+                <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla solo visible en desktop -->
+    <div class="overflow-x-auto hidden md:block">
         <table class="min-w-full divide-y divide-gray-200 mb-4">
             <thead class="bg-gray-50">
                 <tr>
@@ -88,13 +122,13 @@
 </div>
 
 <script>
-document.getElementById('addUserForm').addEventListener('submit', function(e) {
-    e.preventDefault();
-    // Aquí podrías guardar el usuario en backend o localStorage
-    document.getElementById('userSuccess').classList.remove('hidden');
-    this.reset();
-    setTimeout(() => {
-        document.getElementById('userSuccess').classList.add('hidden');
-    }, 2000);
-});
+    document.getElementById('addUserForm').addEventListener('submit', function (e) {
+        e.preventDefault();
+        // Aquí podrías guardar el usuario en backend o localStorage
+        document.getElementById('userSuccess').classList.remove('hidden');
+        this.reset();
+        setTimeout(() => {
+            document.getElementById('userSuccess').classList.add('hidden');
+        }, 2000);
+    });
 </script>
