@@ -3,7 +3,61 @@
     <p class="text-sm text-gray-600 mb-4">
         Aquí puedes registrar y analizar productos que se han perdido, dañado o vencido, para mejorar la gestión de tu inventario.
     </p>
-    <div class="overflow-x-auto">
+
+    <!-- Tarjetas en mobile -->
+    <div class="space-y-4 md:hidden">
+        <div class="border rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs text-gray-500">2025-05-10</span>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-red-100 text-red-600">Vencimiento</span>
+            </div>
+            <div class="text-sm font-medium text-gray-900 mb-1">Fertilizante Líquido 1L</div>
+            <div class="text-xs text-gray-700 mb-1">Categoría: Fertilizantes</div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs text-gray-700">Cantidad: <span class="font-semibold">3</span></span>
+            </div>
+            <div class="text-xs text-gray-500 mb-1">Lote vencido en mayo</div>
+            <div class="flex gap-2 mt-2">
+                <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs text-gray-500">2025-04-28</span>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-600">Daño</span>
+            </div>
+            <div class="text-sm font-medium text-gray-900 mb-1">Maceta Plástica 10cm</div>
+            <div class="text-xs text-gray-700 mb-1">Categoría: Macetas</div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs text-gray-700">Cantidad: <span class="font-semibold">5</span></span>
+            </div>
+            <div class="text-xs text-gray-500 mb-1">Rotura durante traslado</div>
+            <div class="flex gap-2 mt-2">
+                <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+        <div class="border rounded-lg p-4 shadow-sm">
+            <div class="flex justify-between items-center mb-2">
+                <span class="text-xs text-gray-500">2025-04-15</span>
+                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-yellow-100 text-yellow-600">Pérdida</span>
+            </div>
+            <div class="text-sm font-medium text-gray-900 mb-1">Sustrato Universal 5kg</div>
+            <div class="text-xs text-gray-700 mb-1">Categoría: Sustratos</div>
+            <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs text-gray-700">Cantidad: <span class="font-semibold">2</span></span>
+            </div>
+            <div class="text-xs text-gray-500 mb-1">Extraviado en depósito</div>
+            <div class="flex gap-2 mt-2">
+                <button class="text-indigo-600 hover:text-indigo-900 text-xs"><i class="fas fa-edit"></i></button>
+                <button class="text-red-600 hover:text-red-900 text-xs"><i class="fas fa-trash"></i></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Tabla solo visible en desktop -->
+    <div class="overflow-x-auto hidden md:block">
         <table class="min-w-full divide-y divide-gray-200">
             <thead class="bg-gray-50">
                 <tr>
